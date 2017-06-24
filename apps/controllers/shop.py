@@ -41,7 +41,6 @@ class ServiceViewset(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         params = self.request.query_params
         shop_id = params.get("shop_id")
-
         queryset = self.get_queryset().filter(shop_id=shop_id)
         page = self.paginate_queryset(queryset)
         if page is not None:
