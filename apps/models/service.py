@@ -13,6 +13,7 @@ class Service(CommonModelMixin, models.Model):
 
     name = models.CharField(u"服务名称", max_length=32)
     shop = models.ForeignKey(Shop, verbose_name=u"店面", null=True, blank=True)
+    is_valid = models.BooleanField(u"是否有效", default=True)
 
     def __unicode__(self):
         return "%s:%s" % (self.name, self.shop.name)
