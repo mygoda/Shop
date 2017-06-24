@@ -1,0 +1,13 @@
+celery==3.1.23
+Django==1.8
+django-celery==3.1.17
+django-extensions==1.5.0
+django-rest-framework-docs==0.1.7
+django-rest-swagger==2.1.0
+djangorestframework==3.5.3
+gunicorn==19.6.0
+ipython==5.1.0
+MySQL-python==1.2.3
+raven==5.26.0
+redis==2.10.5
+requests==2.11.1
