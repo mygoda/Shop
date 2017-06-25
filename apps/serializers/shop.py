@@ -5,6 +5,13 @@ from rest_framework import serializers
 from apps.models import Shop, Service, ShopIndexPic, ServiceImage
 
 
+class ServiceImageSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ServiceImage
+        fields = "__all__"
+
+
 class ShopSerializers(serializers.ModelSerializer):
 
     class Meta:
@@ -16,10 +23,12 @@ class ShopServiceListSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Service
-        exclude = ("service_imgs", )
+        fields = "__all__"
 
 
 class ShopServiceDetailSerializers(serializers.ModelSerializer):
+
+    service_imgs = ServiceImageSerializers(many=True)
 
     class Meta:
         model = Service
@@ -33,9 +42,3 @@ class ShopPicSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ServiceImageSerializers(serializers.ModelSerializer):
-
-
-    class Meta:
-        model = ServiceImage
-        fields = "__all__"
