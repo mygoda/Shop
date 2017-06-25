@@ -27,6 +27,10 @@ class Service(CommonModelMixin, models.Model):
         """
         return self.serviceimage_set.all()
 
+    @property
+    def service_items(self):
+        return self.serviceitem_set.all()
+
 
 class ServiceImage(models.Model):
     """
@@ -39,3 +43,13 @@ class ServiceImage(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class ServiceItem(models.Model):
+
+    name = models.CharField(u"项目名称", max_length=32)
+    desc = models.CharField(u"项目描述", max_length=64)
+    shop = models.ForeignKey(Shop, verbose_name=u"商店", null=True, blank=True)
+
+    def __unicode__(self):
+        return "%s:%s" % (self.name, self.desc)

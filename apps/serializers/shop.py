@@ -2,7 +2,7 @@
 # __author__ = xutao
 
 from rest_framework import serializers
-from apps.models import Shop, Service, ShopIndexPic, ServiceImage
+from apps.models import Shop, Service, ShopIndexPic, ServiceImage, ServiceItem
 
 
 class ServiceImageSerializers(serializers.ModelSerializer):
@@ -29,6 +29,7 @@ class ShopServiceListSerializers(serializers.ModelSerializer):
 class ShopServiceDetailSerializers(serializers.ModelSerializer):
 
     service_imgs = ServiceImageSerializers(many=True)
+    service_items = ServiceItemSerializers(many=True)
 
     class Meta:
         model = Service
@@ -42,3 +43,8 @@ class ShopPicSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ServiceItemSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ServiceItem
+        fields = "__all__"
