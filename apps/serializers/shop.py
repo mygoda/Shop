@@ -44,7 +44,7 @@ class ShopServiceDetailSerializers(serializers.ModelSerializer):
 
     service_imgs = ServiceImageSerializers(many=True)
     service_items = ServiceItemSerializers(many=True)
-    staff = ServiceStaffSerializers(many=True)
+    service_staff = ServiceStaffSerializers(many=True)
 
     class Meta:
         model = Service

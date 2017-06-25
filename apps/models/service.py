@@ -67,6 +67,7 @@ class ServiceStaff(models.Model):
     name = models.CharField(u"理发师名称", max_length=32)
     service = models.ForeignKey(Service, verbose_name=u"服务")
     shop = models.ForeignKey(Shop, verbose_name=u"店面", null=True, blank=True)
+    img = models.CharField(u"头像", max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return "%s:%s" % (self.shop.name, self.name)
