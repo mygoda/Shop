@@ -56,7 +56,7 @@ class ShopPicViewset(viewsets.ModelViewSet):
     serializer_class = ShopPicSerializers
 
     def get_queryset(self):
-        return ShopIndexPic.objects.all()[:4]
+        return ShopIndexPic.objects.all()
 
     def list(self, request, *args, **kwargs):
         params = self.request.query_params
