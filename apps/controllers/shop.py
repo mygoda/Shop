@@ -4,7 +4,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from apps.models import Company, Shop, Service, ShopIndexPic
-from apps.serializers.shop import ShopSerializers, ShopServiceSerializers, ShopPicSerializers
+from apps.serializers.shop import ShopSerializers, ShopServiceDetailSerializers, ShopServiceListSerializers, ShopPicSerializers
 
 
 class ShopViewset(viewsets.ModelViewSet):
@@ -33,7 +33,11 @@ class ShopViewset(viewsets.ModelViewSet):
 
 class ServiceViewset(viewsets.ModelViewSet):
 
-    serializer_class = ShopServiceSerializers
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return ShopServiceDetailSerializers
+        else:
+            return ShopServiceListSerializers
 
     def get_queryset(self):
         return Service.objects.filter(is_valid=True)
