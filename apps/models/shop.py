@@ -11,6 +11,7 @@ class Company(CommonModelMixin, models.Model):
     """
 
     name = models.CharField(u"公司名称", max_length=255)
+    logo = models.CharField(u"品牌logo", max_length=255, null=True, blank=True)
     is_valid = models.BooleanField(u"是否有效", default=True)
 
     def __unicode__(self):
@@ -25,6 +26,7 @@ class Shop(CommonModelMixin, models.Model):
     name = models.CharField(u"店面名称", max_length=255)
     company = models.ForeignKey(Company, verbose_name=u"公司", null=True, blank=True)
     address = models.CharField(u"地址", max_length=255, null=True, blank=True)
+    logo = models.CharField(u"品牌logo", max_length=255, null=True, blank=True)
     is_valid = models.BooleanField(u"是否有效", default=True)
 
     def __unicode__(self):
