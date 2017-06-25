@@ -16,7 +16,6 @@ class ShopServiceListSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Service
-        fields = "__all__"
         exclude = ("service_imgs", )
 
 
