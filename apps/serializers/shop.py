@@ -26,6 +26,13 @@ class ShopServiceListSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ServiceItemSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ServiceItem
+        fields = "__all__"
+
+
 class ShopServiceDetailSerializers(serializers.ModelSerializer):
 
     service_imgs = ServiceImageSerializers(many=True)
@@ -43,8 +50,4 @@ class ShopPicSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ServiceItemSerializers(serializers.ModelSerializer):
 
-    class Meta:
-        model = ServiceItem
-        fields = "__all__"
