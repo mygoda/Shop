@@ -49,7 +49,7 @@ class ServiceItem(models.Model):
 
     name = models.CharField(u"项目名称", max_length=32)
     desc = models.CharField(u"项目描述", max_length=64)
-    shop = models.ForeignKey(Shop, verbose_name=u"商店", null=True, blank=True)
+    service = models.ForeignKey(Service, verbose_name=u"商店", null=True, blank=True)
 
     def __unicode__(self):
         return "%s:%s" % (self.name, self.desc)
