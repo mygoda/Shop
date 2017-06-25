@@ -3,8 +3,8 @@
 
 from rest_framework import viewsets
 from rest_framework.response import Response
-from apps.models import Company, Shop, Service
-from apps.serializers.shop import ShopSerializers, ShopServiceSerializers
+from apps.models import Company, Shop, Service, ShopIndexPic
+from apps.serializers.shop import ShopSerializers, ShopServiceSerializers, ShopPicSerializers
 
 
 class ShopViewset(viewsets.ModelViewSet):
@@ -37,6 +37,26 @@ class ServiceViewset(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Service.objects.filter(is_valid=True)
+
+    def list(self, request, *args, **kwargs):
+        params = self.request.query_params
+        shop_id = params.get("shop_id")
+        queryset = self.get_queryset().filter(shop_id=shop_id)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class ShopPicViewset(viewsets.ModelViewSet):
+
+    serializer_class = ShopPicSerializers
+
+    def get_queryset(self):
+        return ShopIndexPic.objects.filter(is_valid=True)[:4]
 
     def list(self, request, *args, **kwargs):
         params = self.request.query_params

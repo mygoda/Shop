@@ -12,6 +12,7 @@ schema_view = get_swagger_view(title='理发平台项目接口')
 router = routers.DefaultRouter()
 router.register(r'shops', shop.ShopViewset, base_name='shops')
 router.register(r'services', shop.ServiceViewset, base_name='services')
+router.register(r'shopimgs', shop.ShopPicViewset, base_name='shopimgs')
 
 urlpatterns = [
     # Examples:

@@ -40,10 +40,13 @@ class ShopIndexPic(models.Model):
     href = models.CharField(u"链接", max_length=255, null=True, blank=True)
     img = models.CharField(u"图片链接", max_length=255, null=True, blank=True)
     pri = models.IntegerField(u"优先级", default=0, help_text=u"从小到大排列")
+    shop = models.ForeignKey(Shop, verbose_name=u"商店", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ('pri',)
 
 
 
