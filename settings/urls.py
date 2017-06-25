@@ -13,6 +13,7 @@ router = routers.DefaultRouter()
 router.register(r'shops', shop.ShopViewset, base_name='shops')
 router.register(r'services', shop.ServiceViewset, base_name='services')
 router.register(r'shopimgs', shop.ShopPicViewset, base_name='shopimgs')
+router.register("staff", shop.ServiceStaffViewset, base_name="staff")
 
 urlpatterns = [
     # Examples:
