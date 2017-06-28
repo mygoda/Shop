@@ -60,6 +60,7 @@ class CompanyActivity(CommonModelMixin, models.Model):
     title = models.CharField(u"标题", max_length=32)
     desc = models.CharField(u"简介", max_length=128, null=True, blank=True)
     href = models.CharField(u"图文消息连接", max_length=255, null=True, blank=True)
+    img = models.CharField(u"标题图片", max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return "c:%s, title:%s" % (self.company.name, self.title)
