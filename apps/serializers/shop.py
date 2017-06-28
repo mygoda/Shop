@@ -46,7 +46,7 @@ class ServiceStaffSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = ServiceStaff
-        fields = ("id", "name", "img", "staff_tags")
+        fields = ("id", "name", "img", "staff_tags", "position")
 
 
 class ShopServiceDetailSerializers(serializers.ModelSerializer):
