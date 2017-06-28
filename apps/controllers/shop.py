@@ -84,8 +84,8 @@ class ServiceStaffViewset(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         params = self.request.query_params
-        service_id = params.get("service_id")
-        queryset = self.get_queryset().filter(service_id=service_id)
+        shop_id = params.get("shop_id")
+        queryset = self.get_queryset().filter(shop_id=shop_id)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)

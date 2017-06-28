@@ -71,3 +71,17 @@ class ServiceStaff(models.Model):
 
     def __unicode__(self):
         return "%s:%s" % (self.shop.name, self.name)
+
+    @property
+    def staff_tags(self):
+        return self.stafftag_set.all()
+
+
+class StaffTag(models.Model):
+
+    staff = models.ForeignKey(ServiceStaff, verbose_name=u"服务人员")
+    tag = models.CharField(u"标签名称", max_length=32, null=True)
+
+    def __unicode__(self):
+        return "%s:%s" % (self.staff.name, self.tag)
+

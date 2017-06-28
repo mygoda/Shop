@@ -51,4 +51,17 @@ class ShopIndexPic(models.Model):
         ordering = ('pri',)
 
 
+class CompanyActivity(CommonModelMixin, models.Model):
+    """
+        公司运营活动
+    """
+
+    company = models.ForeignKey(Company, verbose_name=u"公司")
+    title = models.CharField(u"标题", max_length=32)
+    desc = models.CharField(u"简介", max_length=128, null=True, blank=True)
+    href = models.CharField(u"图文消息连接", max_length=255, null=True, blank=True)
+
+    def __unicode__(self):
+        return "c:%s, title:%s" % (self.company.name, self.title)
+
 

@@ -2,7 +2,14 @@
 # __author__ = xutao
 
 from rest_framework import serializers
-from apps.models import Shop, Service, ShopIndexPic, ServiceImage, ServiceItem, ServiceStaff
+from apps.models import Shop, Service, ShopIndexPic, ServiceImage, ServiceItem, ServiceStaff, StaffTag
+
+
+class StaffTagSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = StaffTag
+        fields = ("id", "tag")
 
 
 class ServiceImageSerializers(serializers.ModelSerializer):
@@ -35,9 +42,11 @@ class ServiceItemSerializers(serializers.ModelSerializer):
 
 class ServiceStaffSerializers(serializers.ModelSerializer):
 
+    staff_tags = StaffTagSerializers(many=True)
+
     class Meta:
         model = ServiceStaff
-        fields = ("id", "name", "img")
+        fields = ("id", "name", "img", "staff_tags")
 
 
 class ShopServiceDetailSerializers(serializers.ModelSerializer):
