@@ -3,8 +3,9 @@
 
 from rest_framework import viewsets
 from rest_framework.response import Response
-from apps.models import Company, Shop, Service, ShopIndexPic, ServiceStaff
-from apps.serializers.shop import ShopSerializers, ShopServiceDetailSerializers, ShopServiceListSerializers, ServiceStaffSerializers, ShopPicSerializers
+from apps.models import Company, Shop, Service, ShopIndexPic, ServiceStaff, CompanyActivity
+from apps.serializers.shop import ShopSerializers, ShopServiceDetailSerializers, CompanyActivitySerializers,\
+    ShopServiceListSerializers, ServiceStaffSerializers, ShopPicSerializers
 
 
 class ShopViewset(viewsets.ModelViewSet):
@@ -86,6 +87,30 @@ class ServiceStaffViewset(viewsets.ModelViewSet):
         params = self.request.query_params
         shop_id = params.get("shop_id")
         queryset = self.get_queryset().filter(shop_id=shop_id)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class CompanyActivityViewset(viewsets.ModelViewSet):
+
+    serializer_class = CompanyActivitySerializers
+
+    def get_queryset(self):
+        return CompanyActivity.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        params = self.request.query_params
+        shop_id = params.get("shop_id")
+        if not shop_id:
+            c_id = Company.objects.all()[0].id
+        else:
+            c_id = Shop.objects.get(id=shop_id).company_id
+        queryset = self.get_queryset().filter(company_id=c_id)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)

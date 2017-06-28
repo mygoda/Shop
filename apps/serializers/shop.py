@@ -2,7 +2,7 @@
 # __author__ = xutao
 
 from rest_framework import serializers
-from apps.models import Shop, Service, ShopIndexPic, ServiceImage, ServiceItem, ServiceStaff, StaffTag
+from apps.models import Shop, Service, ShopIndexPic, ServiceImage, ServiceItem, ServiceStaff, StaffTag, CompanyActivity
 
 
 class StaffTagSerializers(serializers.ModelSerializer):
@@ -67,7 +67,11 @@ class ShopPicSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class CompanyActivitySerializers(serializers.ModelSerializer):
 
+    class Meta:
+        model = CompanyActivity
+        fields = "__all__"
 
 
 
